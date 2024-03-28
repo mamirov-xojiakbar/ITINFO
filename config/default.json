@@ -1,0 +1,16 @@
+{
+  "port": 3000,
+  "dbUri": "mongodb://127.0.0.1:27017/itinfo",
+  "tokenKey": "MyVeryVery$ecretKey1",
+  "tokenTime": 86400000,
+  "access_key": "MyAccessTokenSecretKey",
+  "refresh_key": "MyRefreshTokenSecretKey",
+  "access_time": "30m",
+  "refresh_time": "15d",
+  "refresh_ms": 186400000,
+  "smtp_password": "vmvsvjyxtveeviwi",
+  "smtp_host": "smtp.gmail.com",
+  "smtp_port": 587,
+  "smtp_user": "mullazonovakmalzon@gmail.com",
+  "api_url": "http://localhost"
+}

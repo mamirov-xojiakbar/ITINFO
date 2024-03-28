@@ -1,0 +1,81 @@
+<style>
+  /* Custom CSS for login page */
+  .login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 100px;
+  }
+</style>
+
+<div class="container login-container">
+  <h2 class="text-center mb-4">Login</h2>
+  <form id="loginForm">
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="author_email"
+        name="author_email"
+        placeholder="Enter email"
+        aria-describedby="emailHelp"
+        value="mullazonovakmalzon@gamil.com"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        id="author_password"
+        name="author_password"
+        placeholder="Enter password"
+        value="123456"
+        required
+      />
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="remember" />
+      <label class="form-check-label" for="remember">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const author_email = document.getElementById('author_email').value;
+      const author_password = document.getElementById('author_password').value;
+
+      try {
+        fetch('http://localhost:3000/api/author/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ author_email, author_password }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log('Login successfully');
+              return response.json();
+            } else {
+              console.error('Login failed');
+              throw new Error('Login failed');
+            }
+          })
+          .then((tokens) => {
+            console.log(tokens.accessToken);
+            localStorage.setItem('accessToken', tokens.accessToken);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      } catch (error) {
+        console.error('An error occured', error);
+      }
+    });
+  </script>
+</div>
